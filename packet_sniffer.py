@@ -1,7 +1,7 @@
 import scapy.all as scapy
 import os
 import sys
-from scapy.layers.http import HTTPRequest
+from scapy.layers import http
 
 euid = os.geteuid()
 if euid != 0:
@@ -18,7 +18,7 @@ def sniff(interface):
 
 
 def geturl(packet):
-    return packet[HTTPRequest].Host + packet[HTTPRequest].Path
+    return packet[http.HTTPRequest].Host + packet[http.HTTPRequest].Path
 
 
 def get_login(packet):
@@ -31,7 +31,7 @@ def get_login(packet):
 
 
 def processed_sniffed_packet(packet):
-    if packet.haslayer(HTTPRequest):
+    if packet.haslayer(http.HTTPRequest):
         url = geturl(packet)
         print("[+] HTTP Requests -->" + url.decode())
         login_info = get_login(packet)

