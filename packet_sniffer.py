@@ -1,7 +1,7 @@
 import scapy.all as scapy
 import os
 import sys
-from scapy_http import http
+from scapy.layers import http
 import netifaces
 
 def become_root():
