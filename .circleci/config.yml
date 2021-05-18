@@ -5,7 +5,7 @@ jobs:
     environment:
       IMAGE_NAME: stalker
     docker:
-      - image: circleci/python:3.9.5
+      - image: circleci/python:3.8.8
     working_directory: ~/repo
 
     steps:
