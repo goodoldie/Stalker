@@ -3,6 +3,7 @@ import os
 import sys
 import netifaces
 
+
 def become_root():
     euid = os.geteuid()
     if euid != 0:
@@ -12,6 +13,7 @@ def become_root():
 
     print('Running. Your euid is', + euid)
     print("---------------------------------------------------------")
+
 
 def get_mac(ip):
     arp_request = scapy.ARP(pdst=ip)
@@ -44,7 +46,7 @@ def run_spoof_detector():
     interfaces = netifaces.interfaces()
     print("Availabe Interfaces :")
     print(interfaces)
-    interface = raw_input("Enter the interface ")
+    interface = input("Enter the interface ")
     if interface not in interfaces:
         print("Pleas Enter a valid Interface!!")
     else:

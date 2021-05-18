@@ -1,7 +1,6 @@
 import scapy.all as scapy
 import os
 import sys
-import argparse
 
 
 def become_root():
@@ -35,7 +34,7 @@ def print_result(result_list):
 
 def scan_network():
     become_root()
-    target_ip_range = raw_input("Enter the target IP range you want to scan (eg - 10.0.2.1/24) :")
+    target_ip_range = input("Enter the target IP range you want to scan (eg - 10.0.2.1/24) :")
     scan_result = scan(target_ip_range)
     print_result(scan_result)
 

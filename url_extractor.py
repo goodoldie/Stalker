@@ -1,18 +1,20 @@
 import requests
 import re
-import urlparse
+from urllib.parse import urljoin
 
 target_url = ""
 target_links = []
 
+
 def extract_links_from(url):
     response = requests.get(url)
-    return re.findall('(?:href=")(.*?)"', response.content)
+    return re.findall('(?:href=")(.*?)"', str(response.content))
+
 
 def crawl(url):
     href_links = extract_links_from(url)
     for link in href_links:
-        link = urlparse.urljoin(url, link)
+        link = urljoin(url, link)
 
         if '#' in link:
             link = link.split('#')[0]
@@ -22,9 +24,12 @@ def crawl(url):
             print(link)
             crawl(link)
 
+
 def run_crawler():
     global target_url
-    url = raw_input("Enter the target URL\n")
+    url = input("Enter the target URL\n")
     target_url = url
     crawl(target_url)
 
+
+run_crawler()
