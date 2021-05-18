@@ -17,7 +17,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            pip install -r requirements.txt
+            pip install -r requirements.txt --user
       # Step 4: run tests
 #      - run:
 #          name: run tests
