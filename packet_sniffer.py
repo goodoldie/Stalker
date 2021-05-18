@@ -1,7 +1,7 @@
 import scapy.all as scapy
 import os
 import sys
-from scapy.layers import http
+from scapy_http import http
 
 euid = os.geteuid()
 if euid != 0:
