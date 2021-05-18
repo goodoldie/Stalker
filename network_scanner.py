@@ -3,21 +3,16 @@ import os
 import sys
 import argparse
 
-euid = os.geteuid()
-if euid != 0:
-    print("Script not started as root. Running sudo..")
-    args = ['sudo', sys.executable] + sys.argv + [os.environ]
-    os.execlpe('sudo', *args)
 
-print('Running. Your euid is', + euid)
-print("---------------------------------------------------------")
+def become_root():
+    euid = os.geteuid()
+    if euid != 0:
+        print("Script not started as root. Running sudo..")
+        args = ['sudo', sys.executable] + sys.argv + [os.environ]
+        os.execlpe('sudo', *args)
 
-
-def get_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--target", dest="target", help="Target IP / IP range.")
-    options = parser.parse_args()
-    return options
+    print('Running. Your euid is', + euid)
+    print("---------------------------------------------------------")
 
 
 def scan(ip):
@@ -38,6 +33,9 @@ def print_result(result_list):
         print(client["ip"] + "\t\t" + client["mac"])
 
 
-option = get_arguments()
-scan_result = scan(option.target)
-print_result(scan_result)
+def scan_network():
+    become_root()
+    target_ip_range = raw_input("Enter the target IP range you want to scan (eg - 10.0.2.1/24) :")
+    scan_result = scan(target_ip_range)
+    print_result(scan_result)
+

@@ -2,7 +2,7 @@ import requests
 import re
 import urlparse
 
-target_url = "https://medium.com/"
+target_url = ""
 target_links = []
 
 def extract_links_from(url):
@@ -22,4 +22,9 @@ def crawl(url):
             print(link)
             crawl(link)
 
-crawl(target_url)
+def run_crawler():
+    global target_url
+    url = raw_input("Enter the target URL\n")
+    target_url = url
+    crawl(target_url)
+

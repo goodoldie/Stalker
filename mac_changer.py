@@ -4,18 +4,6 @@ import re  # For regex expression checking
 import netifaces
 
 
-def get_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--interface", dest="interface", help="Interface Name whose MAC address is to be changed")
-    parser.add_argument("-m", "--mac", dest="new_mac", help="New MAC address of the Interface")
-    options = parser.parse_args()
-    if not options.interface:
-        parser.error("Please specify an interface, use --help or -h for more info.")
-    elif not options.new_mac:
-        parser.error("Please specify a new MAC address, use --help or -h for more info.")
-    return options
-
-
 def is_valid_interface(interface):
     interfaces = netifaces.interfaces()
     print(interfaces)
@@ -31,9 +19,9 @@ def change_mac_util(interface, new_mac):
         print("[-] The Current MAC address is same as the new MAC address " +curr_mac)
         exit(0)
     print("Changing MAC address for " + interface + " to " + new_mac)
-    subprocess.run(["sudo", "ifconfig", interface, "down"])
-    subprocess.run(["sudo", "ifconfig", interface, "hw", "ether", new_mac])
-    subprocess.run(["sudo", "ifconfig", interface, "up"])
+    subprocess.call(["sudo", "ifconfig", interface, "down"])
+    subprocess.call(["sudo", "ifconfig", interface, "hw", "ether", new_mac])
+    subprocess.call(["sudo", "ifconfig", interface, "up"])
 
 
 def get_current_mac(interface):
@@ -46,15 +34,14 @@ def get_current_mac(interface):
 
 
 def change_mac():
-    option = get_arguments()
-    current_mac = get_current_mac(option.interface)
+    interface = raw_input("Enter the interface who's MAC address you want to change: ")
+    new_mac = raw_input("\nEnter the new MAC address: ")
+    # option = get_arguments()
+    current_mac = get_current_mac(interface)
     print("Current MAC address = " + str(current_mac))
-    change_mac_util(option.interface, option.new_mac)
-    current_mac = str(get_current_mac(option.interface))
-    if current_mac == option.new_mac:
+    change_mac_util(interface, new_mac)
+    current_mac = str(get_current_mac(interface))
+    if current_mac == new_mac:
         print("[+] MAC address was changed successfully to " + current_mac)
     else:
         print("[-] MAC address was not changed!!")
-
-
-change_mac()

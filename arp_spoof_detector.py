@@ -1,15 +1,17 @@
 import scapy.all as scapy
 import os
 import sys
+import netifaces
 
-euid = os.geteuid()
-if euid != 0:
-    print("Script not started as root. Running sudo..")
-    args = ['sudo', sys.executable] + sys.argv + [os.environ]
-    os.execlpe('sudo', *args)
+def become_root():
+    euid = os.geteuid()
+    if euid != 0:
+        print("Script not started as root. Running sudo..")
+        args = ['sudo', sys.executable] + sys.argv + [os.environ]
+        os.execlpe('sudo', *args)
 
-print('Running. Your euid is', + euid)
-print("---------------------------------------------------------")
+    print('Running. Your euid is', + euid)
+    print("---------------------------------------------------------")
 
 def get_mac(ip):
     arp_request = scapy.ARP(pdst=ip)
@@ -24,7 +26,7 @@ def sniff(interface):
 
 
 def processed_sniffed_packet(packet):
-    if packet.hasLayer(scapy.ARP) and packet[scapy.ARP].op == 2:
+    if packet.haslayer(scapy.ARP) and packet[scapy.ARP].op == 2:
         try:
             real_mac = get_mac(packet[scapy.ARP].psrc)
             response_mac = packet[scapy.ARP].hwsrc
@@ -37,4 +39,15 @@ def processed_sniffed_packet(packet):
             pass
 
 
-sniff("wlan0")
+def run_spoof_detector():
+    become_root()
+    interfaces = netifaces.interfaces()
+    print("Availabe Interfaces :")
+    print(interfaces)
+    interface = raw_input("Enter the interface ")
+    if interface not in interfaces:
+        print("Pleas Enter a valid Interface!!")
+    else:
+        print("ARP Spoof Detector ON!!!")
+        sniff(interface)
+

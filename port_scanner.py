@@ -64,10 +64,13 @@ def main(host, ports):
     q.join()
 
 
-if __name__ == "__main__":
-    host = input("Host IP Address ->")
-    port_range = input("Port Range (x-y) ->")
+def run_port_scanner():
+    host = raw_input("Host IP Address ->")
+    port_range = raw_input("Port Range (x-y) ->")
     start_port, end_port = port_range.split("-")
     start_port, end_port = int(start_port), int(end_port)
     ports = [p for p in range(start_port, end_port)]
     main(host, ports)
+
+
+run_port_scanner()

