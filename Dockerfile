@@ -1,4 +1,4 @@
-FROM python:2.7.18-stretch
+FROM python:3.8.10-buster
 WORKDIR /app
 COPY stalker_main.py .
 COPY requirements.txt .

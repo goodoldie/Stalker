@@ -1,6 +1,5 @@
 import os
 import mac_changer, network_scanner, arp_spoof, packet_sniffer, arp_spoof_detector, subdomain_scanner, url_extractor
-from mac_changer import *
 
 os.system('cls' if os.name == 'nt' else 'clear')
 art = """
@@ -26,21 +25,21 @@ while True:
     print("8. Exit Program\n")
 
     choice = input("Enter your choice: ")
-    if choice == 1:
+    if choice == '1':
         mac_changer.change_mac()
-    elif choice == 2:
+    elif choice == '2':
         network_scanner.scan_network()
-    elif choice == 3:
+    elif choice == '3':
         arp_spoof.run_spoof()
-    elif choice == 4:
+    elif choice == '4':
         packet_sniffer.run_sniff()
-    elif choice == 5:
+    elif choice == '5':
         arp_spoof_detector.run_spoof_detector()
-    elif choice == 6:
+    elif choice == '6':
         subdomain_scanner.run_subdomain_scan()
-    elif choice == 7:
+    elif choice == '7':
         url_extractor.run_crawler()
-    elif choice == 8:
+    elif choice == '8':
         break
     else:
         print("Please Enter a Valid Input")

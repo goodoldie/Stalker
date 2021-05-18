@@ -53,5 +53,3 @@ def run_sniff():
         print("Sniffing.........")
         sniff(interface)
 
-
-run_sniff()

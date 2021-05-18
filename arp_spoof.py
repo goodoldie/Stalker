@@ -72,5 +72,3 @@ def run_spoof():
         restore(target_ip, gateway_ip)
         restore(gateway_ip, target_ip)
 
-
-run_spoof()

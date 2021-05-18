@@ -30,6 +30,3 @@ def run_crawler():
     url = input("Enter the target URL\n")
     target_url = url
     crawl(target_url)
-
-
-run_crawler()

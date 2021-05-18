@@ -3,4 +3,5 @@ colorama==0.3.7
 netifaces==0.10.9
 requests==2.22.0
 scapy==2.4.0
-
+scapy-http==1.8.2
+urllib3==1.25.11
