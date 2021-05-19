@@ -19,7 +19,8 @@ COPY arp_spoof_detector.py .
 COPY subdomain_scanner.py .
 COPY subdomain.txt .
 COPY url_extractor.py .
-RUN pip install -r requirements.txt
+
+#RUN pip install -r requirements.txt
 
 #File will be run from here onwards
 ENTRYPOINT ["/bin/zsh"]
