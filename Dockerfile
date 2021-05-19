@@ -19,7 +19,7 @@ COPY arp_spoof_detector.py .
 COPY subdomain_scanner.py .
 COPY subdomain.txt .
 COPY url_extractor.py .
-
+RUN cd /usr/lib/x86_64-linux-gnu/ && ln -s -f libc.a liblibc.a
 #RUN pip install -r requirements.txt
 
 #File will be run from here onwards
