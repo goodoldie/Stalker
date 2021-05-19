@@ -1,10 +1,13 @@
 FROM kalilinux/kali-rolling
+ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /home/stalker
 RUN apt-get -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
 RUN apt-get install -y apt-utils
 RUN apt-get update && apt-get install -y apt-utils 2>&1 | \grep -v "^debconf: delaying package configuration, since apt-utils.*"
 RUN apt-get -y install net-tools
-DEBIAN_FRONTEND=noninteractive RUN apt-get install python python3-pip
+
+#RUN apt-get install python python3-pip
+
 RUN apt-get -y install pciutils usbutils
 COPY stalker_main.py .
 COPY requirements.txt .
