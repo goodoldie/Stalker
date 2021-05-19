@@ -23,4 +23,4 @@ COPY url_extractor.py .
 #RUN pip install -r requirements.txt
 
 #File will be run from here onwards
-ENTRYPOINT ["/bin/zsh"]
+ENTRYPOINT ["/bin/bash"]
