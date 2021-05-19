@@ -3,6 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /home/stalker
 RUN apt-get -y update && apt-get -y dist-upgrade && apt-get -y autoremove && apt-get clean
 RUN apt-get install -y apt-utils
+RUN apt-get update && apt-get install -y apt-utils 2>&1 | \grep -v "^debconf: delaying package configuration, since apt-utils.*"
 RUN apt-get -y install net-tools
 RUN apt install build-essential zlib1g-dev \libncurses5-dev libgdbm-dev libnss3-dev \libssl-dev libreadline-dev libffi-dev curl
 RUN apt-get install python python3-pip
