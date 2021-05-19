@@ -1,0 +1,23 @@
+2021-05-19 01:00:57,048:DEBUG:Current MAC address of the interface 00:c0:ca:97:e4:25
+2021-05-19 01:00:59,618:DEBUG:New MAC address entered 00:11:33:44:55:66
+2021-05-19 01:01:47,749:DEBUG:Current MAC address of the interface 00:c0:ca:97:e4:25
+2021-05-19 01:01:51,024:DEBUG:New MAC address entered 00:11:33:44:55:67
+2021-05-19 01:05:18,983:DEBUG:192.168.0.1		d8:47:32:3a:08:b3
+2021-05-19 01:06:55,499:DEBUG:Current MAC address of the interface 00:c0:ca:97:e4:25
+2021-05-19 01:06:58,057:DEBUG:New MAC address entered 00:11:33:44:55:66
+2021-05-19 01:19:02,360:WARNING:No route found for IPv6 destination :: (no default route?)
+2021-05-19 01:19:02,472:ERROR:Loading module scapy.layers.ipsec
+Traceback (most recent call last):
+  File "/home/kali/Dev_Ops_Final/Stalker/Stalker/lib/python3.9/site-packages/scapy/main.py", line 121, in _load
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 790, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/home/kali/Dev_Ops_Final/Stalker/Stalker/lib/python3.9/site-packages/scapy/layers/ipsec.py", line 43, in <module>
+    from fractions import gcd
+ImportError: cannot import name 'gcd' from 'fractions' (/usr/lib/python3.9/fractions.py)

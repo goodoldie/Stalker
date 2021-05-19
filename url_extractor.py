@@ -1,7 +1,10 @@
 import requests
 import re
 from urllib.parse import urljoin
+import logging
 
+logging.basicConfig(filename='urls.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 target_url = ""
 target_links = []
 
@@ -22,6 +25,7 @@ def crawl(url):
         if target_url in link and link not in target_links:
             target_links.append(link)
             print(link)
+            logging.debug("URL Extracted --> {}".format(link))
             crawl(link)
 
 
@@ -30,3 +34,4 @@ def run_crawler():
     url = input("Enter the target URL\n")
     target_url = url
     crawl(target_url)
+

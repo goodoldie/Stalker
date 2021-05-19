@@ -1,0 +1,48 @@
+2021-05-19 01:17:33,306:DEBUG:Starting new HTTP connection (1): www.vulnweb.com:80
+2021-05-19 01:17:33,607:DEBUG:http://www.vulnweb.com:80 "GET / HTTP/1.1" 200 None
+2021-05-19 01:17:52,113:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:52,681:DEBUG:https://medium.com:443 "GET / HTTP/1.1" 200 None
+2021-05-19 01:17:52,684:DEBUG:URL Extracted --> https://medium.com/osd.xml
+2021-05-19 01:17:52,685:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:53,179:DEBUG:https://medium.com:443 "GET /osd.xml HTTP/1.1" 200 659
+2021-05-19 01:17:53,180:DEBUG:URL Extracted --> https://medium.com
+2021-05-19 01:17:53,181:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:53,775:DEBUG:https://medium.com:443 "GET / HTTP/1.1" 200 None
+2021-05-19 01:17:53,778:DEBUG:URL Extracted --> https://medium.com/
+2021-05-19 01:17:53,779:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:54,369:DEBUG:https://medium.com:443 "GET / HTTP/1.1" 200 None
+2021-05-19 01:17:54,374:DEBUG:URL Extracted --> https://medium.com/about?autoplay=1
+2021-05-19 01:17:54,375:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:55,008:DEBUG:https://medium.com:443 "GET /about?autoplay=1 HTTP/1.1" 200 None
+2021-05-19 01:17:55,011:DEBUG:URL Extracted --> https://medium.com/?source=about_page---nav_logo-----------------------about_page_nav_logo-&amp;utm_source=about&amp;utm_medium=landing-page&amp;utm_campaign=home&amp;utm_content=top-nav
+2021-05-19 01:17:55,011:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:55,644:DEBUG:https://medium.com:443 "GET /?source=about_page---nav_logo-----------------------about_page_nav_logo-&amp;utm_source=about&amp;utm_medium=landing-page&amp;utm_campaign=home&amp;utm_content=top-nav HTTP/1.1" 200 None
+2021-05-19 01:17:55,649:DEBUG:URL Extracted --> https://medium.com/membership
+2021-05-19 01:17:55,650:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:56,314:DEBUG:https://medium.com:443 "GET /membership HTTP/1.1" 200 None
+2021-05-19 01:17:56,318:DEBUG:URL Extracted --> https://medium.com/?source=membership_page---nav_logo-----------------------membership_page_nav_logo-&amp;utm_source=membership&amp;utm_medium=landing-page&amp;utm_campaign=home&amp;utm_content=top-nav
+2021-05-19 01:17:56,318:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:56,863:DEBUG:https://medium.com:443 "GET /?source=membership_page---nav_logo-----------------------membership_page_nav_logo-&amp;utm_source=membership&amp;utm_medium=landing-page&amp;utm_campaign=home&amp;utm_content=top-nav HTTP/1.1" 200 None
+2021-05-19 01:17:56,870:DEBUG:URL Extracted --> https://medium.com/m/signin?operation=login&amp;redirect=https%3A%2F%2Fmedium.com%2F&amp;source=--------------------------lo_home_nav-----------
+2021-05-19 01:17:56,871:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:57,334:DEBUG:https://medium.com:443 "GET /m/signin?operation=login&amp;redirect=https%3A%2F%2Fmedium.com%2F&amp;source=--------------------------lo_home_nav----------- HTTP/1.1" 200 None
+2021-05-19 01:17:57,336:DEBUG:URL Extracted --> https://medium.com/m/signin?operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F&amp;source=--------------------------lo_home_nav-----------
+2021-05-19 01:17:57,337:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:57,812:DEBUG:https://medium.com:443 "GET /m/signin?operation=register&amp;redirect=https%3A%2F%2Fmedium.com%2F&amp;source=--------------------------lo_home_nav----------- HTTP/1.1" 200 None
+2021-05-19 01:17:57,814:DEBUG:URL Extracted --> https://medium.com/topic/self?source=home-------------------------------------
+2021-05-19 01:17:57,815:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:17:58,880:DEBUG:https://medium.com:443 "GET /topic/self?source=home------------------------------------- HTTP/1.1" 200 None
+2021-05-19 01:17:58,885:DEBUG:URL Extracted --> https://medium.com/topic/self
+2021-05-19 01:17:58,885:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:18:00,099:DEBUG:https://medium.com:443 "GET /topic/self HTTP/1.1" 200 None
+2021-05-19 01:18:00,104:DEBUG:URL Extracted --> https://medium.com/membership?source=upgrade_membership---nav_full----------------------------------
+2021-05-19 01:18:00,105:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:18:00,828:DEBUG:https://medium.com:443 "GET /membership?source=upgrade_membership---nav_full---------------------------------- HTTP/1.1" 200 None
+2021-05-19 01:18:00,832:DEBUG:URL Extracted --> https://medium.com/about?source=membership_page---about_top_nav_link-----------------------membership_page_about_top_nav_link-&amp;utm_source=membership&amp;utm_medium=landing-page&amp;utm_campaign=about&amp;utm_content=top-nav
+2021-05-19 01:18:00,833:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:18:01,514:DEBUG:https://medium.com:443 "GET /about?source=membership_page---about_top_nav_link-----------------------membership_page_about_top_nav_link-&amp;utm_source=membership&amp;utm_medium=landing-page&amp;utm_campaign=about&amp;utm_content=top-nav HTTP/1.1" 200 None
+2021-05-19 01:18:01,516:DEBUG:URL Extracted --> https://medium.com/about?source=about_page---about_top_nav_link-----------------------about_page_about_top_nav_link-&amp;utm_source=about&amp;utm_medium=landing-page&amp;utm_campaign=about&amp;utm_content=top-nav
+2021-05-19 01:18:01,518:DEBUG:Starting new HTTPS connection (1): medium.com:443
+2021-05-19 01:18:02,178:DEBUG:https://medium.com:443 "GET /about?source=about_page---about_top_nav_link-----------------------about_page_about_top_nav_link-&amp;utm_source=about&amp;utm_medium=landing-page&amp;utm_campaign=about&amp;utm_content=top-nav HTTP/1.1" 200 None
+2021-05-19 01:18:02,180:DEBUG:URL Extracted --> https://medium.com/membership?source=about_page---membership_top_nav_link-----------------------about_page_membership_top_nav_link-&amp;utm_source=about&amp;utm_medium=landing-page&amp;utm_campaign=membership&amp;utm_content=top-nav
+2021-05-19 01:18:02,181:DEBUG:Starting new HTTPS connection (1): medium.com:443

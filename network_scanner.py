@@ -1,6 +1,10 @@
 import scapy.all as scapy
 import os
 import sys
+import logging
+
+logging.basicConfig(filename='network_scanner.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 
 def become_root():
@@ -29,6 +33,7 @@ def scan(ip):
 def print_result(result_list):
     print("IP\t\t\tMAC Address\n---------------------------------------------------------")
     for client in result_list:
+        logging.debug(client["ip"] + "\t\t" + client["mac"])
         print(client["ip"] + "\t\t" + client["mac"])
 
 

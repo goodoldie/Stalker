@@ -1,0 +1,12 @@
+2021-05-19 01:10:04,783:DEBUG:HTTP Requests -> b'testphp.vulnweb.com/login.php'
+2021-05-19 01:10:04,784:DEBUG:Possible Username/Password -> None
+2021-05-19 01:10:12,504:DEBUG:HTTP Requests -> b'testphp.vulnweb.com/userinfo.php'
+2021-05-19 01:10:12,507:DEBUG:Possible Username/Password -> b'uname=pawan&pass=mypass'
+2021-05-19 01:10:12,651:DEBUG:HTTP Requests -> b'testphp.vulnweb.com/login.php'
+2021-05-19 01:10:12,652:DEBUG:Possible Username/Password -> None
+2021-05-19 01:10:17,918:DEBUG:HTTP Requests -> b'testphp.vulnweb.com/artists.php'
+2021-05-19 01:10:17,919:DEBUG:Possible Username/Password -> None
+2021-05-19 01:10:22,540:DEBUG:HTTP Requests -> b'testphp.vulnweb.com/comment.php?aid=1'
+2021-05-19 01:10:22,542:DEBUG:Possible Username/Password -> None
+2021-05-19 01:10:29,031:DEBUG:HTTP Requests -> b'testphp.vulnweb.com/comment.php'
+2021-05-19 01:10:29,031:DEBUG:Possible Username/Password -> None

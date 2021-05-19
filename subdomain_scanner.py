@@ -1,5 +1,8 @@
 import requests
+import logging
 
+logging.basicConfig(filename='subdomains.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 def request(url):
     try:
@@ -17,4 +20,5 @@ def run_subdomain_scan():
             response = request(test_url)
             if response:
                 print("[+] Discovered Subdomain --> " + test_url)
+                logging.debug("Discovered Subdomain --> {}".format(test_url))
 
